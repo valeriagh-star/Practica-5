@@ -1,3 +1,4 @@
+import pytest
 from envio import calcular_envio
 
 # Ciclo 1: envío estándar
@@ -14,3 +15,12 @@ def test_envio_express_hasta_5kg():
 
 def test_envio_express_mas_de_5kg():
     assert calcular_envio(7, "express") == 140
+
+# Ciclo 4: validación del peso
+def test_peso_cero_lanza_error():
+    with pytest.raises(ValueError):
+        calcular_envio(0, "estandar")
+
+def test_peso_negativo_lanza_error():
+    with pytest.raises(ValueError):
+        calcular_envio(-2, "express")
