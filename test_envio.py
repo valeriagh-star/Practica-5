@@ -24,3 +24,8 @@ def test_peso_cero_lanza_error():
 def test_peso_negativo_lanza_error():
     with pytest.raises(ValueError):
         calcular_envio(-2, "express")
+
+# Ciclo 5: tipo de envío inválido
+def test_tipo_envio_invalido_lanza_error():
+    with pytest.raises(ValueError):
+        calcular_envio(3, "urgente")
