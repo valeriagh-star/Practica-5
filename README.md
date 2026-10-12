@@ -27,3 +27,46 @@
 
 4. **¿Por qué en TDD no conviene implementar todos los requisitos desde el inicio?**
   - En TDD no conviene implementar todos los requisitos desde el inicio porque trabajar en pasos pequeños permite detectar errores al instante y asegurar que las pruebas guíen el diseño del programa. Escribir todo el código de golpe dificulta identificar qué causó una falla y rompe el ciclo incremental de desarrollo.   
+
+---
+
+## Durante el desarrollo
+
+1. **¿Qué prueba escribiste?**
+   * **Ciclo 1:** `test_envio_estandar_hasta_5kg` y `test_envio_estandar_exactamente_5kg`.
+   * **Ciclo 2:** `test_envio_estandar_mas_de_5kg`.
+   * **Ciclo 3:** `test_envio_express_hasta_5kg` y `test_envio_express_mas_de_5kg`.
+   * **Ciclo 4:** `test_peso_cero_lanza_error` y `test_peso_negativo_lanza_error`.
+   * **Ciclo 5:** `test_tipo_envio_invalido_lanza_error`.
+
+2. **¿Por qué falló inicialmente?**
+   * **Ciclo 1:** La función `calcular_envio` no existía en el módulo.
+   * **Ciclo 2:** La función regresaba un costo fijo de 50 y no calculaba el cobro por los kilogramos excedentes.
+   * **Ciclo 3:** No existía la lógica para duplicar el costo base cuando el tipo de servicio era `express`.
+   * **Ciclo 4:** No se validaba el rango del peso, procesando valores menores o iguales a cero como válidos.
+   * **Ciclo 5:** La función no validaba la cadena del tipo de envío, aceptando cualquier valor no reconocido.
+
+3. **¿Qué cambio mínimo hiciste?**
+   * **Ciclo 1:** Se creó la función `calcular_envio` regresando el valor constante `50`.
+   * **Ciclo 2:** Se agregó la condición `if peso > 5:` para calcular y sumar $10 por cada kilogramo de exceso.
+   * **Ciclo 3:** Se añadió la instrucción `if tipo_envio == "express":` para multiplicar el costo resultante por 2.
+   * **Ciclo 4:** Se colocó al inicio la validación `if peso <= 0: raise ValueError(...)`.
+   * **Ciclo 5:** Se agregó la validación `if tipo_envio not in ["estandar", "express"]: raise ValueError(...)`.
+
+4. **¿Todas las pruebas anteriores continuaron pasando?**
+   * Sí, en cada iteración se ejecutó `pytest` comprobando que las pruebas previas se mantenían en **VERDE** junto a la nueva prueba agregada. Esto se pruede corroborar en el archivo adjunto `evidencia-pruebas.pdf`, en el cual se observan las capturas de pantalla de cada prueba realizada y cada falla.
+
+5. **¿Realizaste alguna refactorización?**
+   * Sí, tras completar todos los ciclos se extrajeron los valores numéricos fijos a constantes globales (`COSTO_BASE = 50`, `PESO_LIMITE = 5`, `COSTO_EXCESO_POR_KG = 10`) para mejorar la mantenibilidad y legibilidad del código sin alterar su comportamiento esperado.
+
+---
+
+### Registro de ciclos
+
+| Ciclo | Prueba agregada | Cambio realizado | Resultado |
+| :---: | :--- | :--- | :---: |
+| **1** | `test_envio_estandar_hasta_5kg` y `test_envio_estandar_exactamente_5kg` | Se creó la función `calcular_envio` retornando `50`. | VERDE |
+| **2** | `test_envio_estandar_mas_de_5kg` | Se añadió el cobro de $10 por kg adicional si `peso > 5`. | VERDE |
+| **3** | `test_envio_express_hasta_5kg` y `test_envio_express_mas_de_5kg` | Se implementó el multiplicador `* 2` para servicio `"express"`. | VERDE |
+| **4** | `test_peso_cero_lanza_error` y `test_peso_negativo_lanza_error` | Se agregó validación para lanzar `ValueError` si `peso <= 0`. | VERDE |
+| **5** | `test_tipo_envio_invalido_lanza_error` | Se agregó validación para lanzar `ValueError` si el servicio no es válido. | VERDE |
