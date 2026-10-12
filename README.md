@@ -87,3 +87,25 @@
 3. **¿Qué parte del proceso TDD te resultó más difícil?**
    * <p align="justify">Resistir la tentación de programar toda la lógica desde el principio y limitarnos a escribir solo el código mínimo para hacer pasar cada prueba individual.
 </p>
+
+---
+
+## Instrucciones para ejecutar el programa
+
+- Clonar el repositorio remoto e ingresar a la carpeta del proyecto: 
+  
+  `git clone https://github.com/valeriagh-star/Practica-5.git`
+
+  `cd Practica-5` 
+
+- Crear un entorno virtual e instalar las dependencias necesarias:
+
+  `python3 -m venv venv`
+
+  `source venv/bin/activate`
+
+  `pip install pytest`
+
+- Ejecutar las pruebas unitarias:
+
+  `pytest`
