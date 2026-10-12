@@ -110,4 +110,4 @@
 
   `pytest`
 
-- Opcionalmente, se puede ejecutar `pytest -v` para ver un reporte detallado del resultado de cada prueba unitaria.
+- Se puede ejecutar `pytest -v` para ver un reporte detallado del resultado de cada prueba unitaria realizada.
