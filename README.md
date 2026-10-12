@@ -17,16 +17,17 @@
 ## Antes de programar
 
 1. **¿Qué significa que una prueba esté en estado ROJO?**
-  - Significa que la prueba falló, demostrando que la funcionalidad deseada aún no existe o no se comporta como se espera.
+   * Significa que la prueba falló, demostrando que la funcionalidad deseada aún no existe o no se comporta como se espera.
 
 2. **¿Qué debe hacerse para llegar a VERDE?**
-  - Escribir la cantidad mínima necesaria de código en la función para que la prueba pase.
+   * Escribir la cantidad mínima necesaria de código en la función para que la prueba pase.
 
 3. **¿Qué diferencia existe entre agregar funcionalidad y refactorizar?**
-  - **Agregar funcionalidad** añade nuevos comportamientos (y requiere nuevas pruebas en rojo). **Refactorizar** mejora la estructura o legibilidad del código sin alterar su comportamiento observable (las pruebas deben seguir en verde).
+   * **Agregar funcionalidad** añade nuevos comportamientos (y requiere nuevas pruebas en rojo). **Refactorizar** mejora la estructura o legibilidad del código sin alterar su comportamiento observable (las pruebas deben seguir en verde).
 
 4. **¿Por qué en TDD no conviene implementar todos los requisitos desde el inicio?**
-  - En TDD no conviene implementar todos los requisitos desde el inicio porque trabajar en pasos pequeños permite detectar errores al instante y asegurar que las pruebas guíen el diseño del programa. Escribir todo el código de golpe dificulta identificar qué causó una falla y rompe el ciclo incremental de desarrollo.   
+   * <p align="justify">En TDD no conviene implementar todos los requisitos desde el inicio porque trabajar en pasos pequeños permite detectar errores al instante y asegurar que las pruebas guíen el diseño del programa. Escribir todo el código de golpe dificulta identificar qué causó una falla y rompe el ciclo incremental de desarrollo.   
+</p>
 
 ---
 
@@ -70,3 +71,19 @@
 | **3** | `test_envio_express_hasta_5kg` y `test_envio_express_mas_de_5kg` | Se implementó el multiplicador `* 2` para servicio `"express"`. | VERDE |
 | **4** | `test_peso_cero_lanza_error` y `test_peso_negativo_lanza_error` | Se agregó validación para lanzar `ValueError` si `peso <= 0`. | VERDE |
 | **5** | `test_tipo_envio_invalido_lanza_error` | Se agregó validación para lanzar `ValueError` si el servicio no es válido. | VERDE |
+
+---
+
+## Reflexión final
+
+1. **¿En qué momento una prueba te obligó a modificar el diseño?**
+   * <p align="justify">Al agregar los casos de error (pesos y tipos de envío inválidos), la función tuvo que reorganizarse para verificar y rechazar los datos incorrectos al principio. Esto cambió el flujo del programa, asegurando que ningún cálculo se realizara con entradas no válidas.
+</p>
+
+2. **¿Qué ventaja encontraste al ejecutar todas las pruebas después de cada cambio?**
+   * <p align="justify">Nos dió la seguridad constante de que cada nueva regla agregada o cada cambio de refactorización no alteró el código que ya funcionaba correctamente. Al ejecutar la totalidad de las pruebas tras cada modificación, se pudo confirmar de inmediato que el comportamiento previo se mantenía intacto.
+</p>
+
+3. **¿Qué parte del proceso TDD te resultó más difícil?**
+   * <p align="justify">Resistir la tentación de programar toda la lógica desde el principio y limitarnos a escribir solo el código mínimo para hacer pasar cada prueba individual.
+</p>
