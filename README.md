@@ -109,3 +109,5 @@
 - Ejecutar las pruebas unitarias:
 
   `pytest`
+
+- Opcionalmente, se puede ejecutar `pytest -v` para ver un reporte detallado del resultado de cada prueba unitaria.
